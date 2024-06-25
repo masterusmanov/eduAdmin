@@ -1,38 +1,32 @@
 export const NavLinks = [
     {
       id: 1,
-      title: "Menu",
+      title: "Dashboard",
       link: "/admin-dashboard",
-      icon: "bx bx-dish"
+      icon: "bx bxs-dashboard"
     },
     {
       id: 2,
       title: "Kurslar",
-      link: "/reklama",
-      icon: "bx bx-volume-full"
+      link: "/courses",
+      icon: "fas fa-chalkboard-teacher"
     },
     {
         id: 3,
         title: "Kurs foydalanuvchilari",
-        link: "/employee",
-        icon: "bx bxs-group"
+        link: "/course_users",
+        icon: "	fas fa-user-graduate"
     },
     {
         id: 4,
         title: "Web sahifa foydalanuvchilari",
-        link: "/company",
-        icon: "bx bx-spreadsheet"
+        link: "/web_users",
+        icon: "fas fa-user-friends"
     },
     {
         id: 4,
-        title: "Bildirishnoma",
-        link: "/notification",
-        icon: "bx bx-bell"
-    },
-    {
-        id: 5,
-        title: "Plastik karta",
-        link: "/card",
-        icon: "bx bx-credit-card-front"
+        title: "Kurs o'quvchilari",
+        link: "/course_student",
+        icon: "fas fa-graduation-cap"
     }
   ]
