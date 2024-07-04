@@ -9,9 +9,9 @@
         <li v-for="link in navlink" :key="link.id">
           <router-link
             :to="link.link"
-            class="px-6 py-4 flex items-center rounded-l-lg text-[18px] text-white hover:text-[#FFFFFF] hover:bg-[#7EBA34]"
+            class="px-6 py-4 flex items-center rounded-l-lg text-[16px] text-white hover:text-[#FFFFFF] hover:bg-[#7EBA34]"
           >
-            <i :class="link.icon"></i>
+            <i :class="link.icon" class="text-[20px]"></i>
             <span class="ml-3">{{ link.title }}</span>
           </router-link>
         </li>
@@ -19,10 +19,19 @@
     </div>
     <div>
     </div>
-    <div>
-      <img src="../../assets/images/Sidebar/123.png" alt="account" class="w-[50px]">
-     <div @click="logout" class="text-red-500 font-[700] text-[24px] px-10 py-[10px] flex items-center gap-6 hover:bg-red-500 hover:text-white cursor-pointer">
-      <i class="bx bx-log-out float-end text-[32px]"></i>
+    <div class="grid ">
+      <div class="px-6">
+        <img src="../../assets/images/Sidebar/123.png" alt="account" class="w-[35px]">
+        <div class="flex items-center justify-between gap-2 mt-[15px]">
+            <h1 class="text-white text-[16px] font-bold">John DOE</h1>
+          <div class="flex gap-1">
+            <i class="far fa-bell text-white text-[20px] font-bold ml-5"></i>
+            <div class="bg-red-600 w-[8px] h-[8px]  rounded-full"></div>
+        </div>
+        </div>
+      </div>
+     <div @click="logout" class="text-red-500 font-[700] text-[18px] px-10 py-[10px] flex items-center gap-6 hover:bg-red-500 hover:text-white cursor-pointer">
+      <i class="bx bx-log-out float-end text-[18px]"></i>
       <h1>Chiqish</h1>
      </div>
     </div>
