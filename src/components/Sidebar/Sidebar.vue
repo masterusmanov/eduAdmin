@@ -1,8 +1,8 @@
 <template>
-  <div class="w-[300px] bg-[#081028] h-screen grid justify-between">
+  <div class="w-[300px] bg-[#081028] xl:h-screen grid justify-between">
     <div class="flex items-center justify-between px-6 py-[50px] gap-3">
       <img src="../../assets/LOGO.png" alt="logo" class="w-[60px]" />
-      <h1 class="font-[700] text-[24px] text-[#7EBA34]">Uchkurgan IT School</h1>
+      <h1 class="font-[700] text-[24px] text-[#7EBA34] 3xl:text-[16px]">Uchkurgan IT School</h1>
     </div>
     <div class="ml-6 grid justify-between">
       <ul class="space-y-2 font-medium mt-[16px]">
