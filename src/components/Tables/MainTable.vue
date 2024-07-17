@@ -5,21 +5,21 @@
         <table class="w-full text-sm">
           <thead class="text-md text-white font-bold uppercase bg-gray-500">
             <tr class="">
+              <th scope="col" class="px-4 py-3 text-left">T/R</th>
               <th scope="col" class="px-4 py-3 text-left">
                 Ismi va Familiyasi
               </th>
               <th scope="col" class="px-4 py-3 text-left">Telefon raqami</th>
-              <th scope="col" class="px-4 py-3 text-left">Yo'nalishi</th>
               <th scope="col" class="px-4 py-3 text-left">Sanasi</th>
             </tr>
           </thead>
           <tbody class="">
             <tr v-for="el in paginatedData" :key="el.id" class="border-b dark:border-gray-700">
+              <td class="px-4 py-3">{{el.id}}</td>
               <td class="px-4 py-3 flex items-center gap-4">
                 <p>{{el.full_name}}</p>
               </td>
               <td class="px-4 py-3">{{el.phone}}</td>
-              <td class="px-4 py-3">Dasturlash</td>
               <td class="px-4 py-3">{{el.createdAt.slice(0, 10)}} - {{el.createdAt.slice(11, 19)}}</td>
             </tr>
           </tbody>
