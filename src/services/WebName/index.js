@@ -10,9 +10,7 @@ export const webName = {
         }
     }),
     remove: (id)=> axios.delete(`/api/v1/admin/delete-account/${id}`, {
-        headers:{
-            "Authorization": `Bearer ${localStorage.getItem('token')}`
-        }
+       
     }),
     update: (id, state)=> axios.put(`/api/v1/admin/update/${id}`, state, {
         headers:{
