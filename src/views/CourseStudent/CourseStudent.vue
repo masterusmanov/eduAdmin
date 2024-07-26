@@ -4,8 +4,7 @@
             <h1 class="text-[24px] font-[700]">IT school o'quvchilari ro'yhati</h1>
             <button @click="toggleModal" class="bg-[#77BF44] pb-1 rounded-lg px-4 text-[32px] text-white font-bold">+</button>
         </div>
-  
-  
+
       <!-- Main modal -->
       <div tabindex="-1" aria-hidden="true" class="overflow-y-auto flex  bg-[rgba(0,0,0,0.4)] overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full" :class="modal ? '' : 'hidden'">
             
@@ -28,16 +27,16 @@
                         <div class="flex justify-between gap-6">
                             <div class="w-[48%]">
                                 <div class="mt-3">
-                                    <label for="dish_uzb" class="block mb-2 text-[16px] font-medium text-gray-900 dark:text-white">O'quvchi ID raqami</label>
-                                    <input v-model="contactInfo.dish_uzb" type="text" name="dish_uzb" id="dish_uzb" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="O'quvchi ID raqami" required="">
+                                    <label for="student_id" class="block mb-2 text-[16px] font-medium text-gray-900 dark:text-white">O'quvchi ID raqami</label>
+                                    <input v-model="contactInfo.student_id" type="text" name="student_id" id="student_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="O'quvchi ID raqami" required="">
                                 </div>
                                 <div class="mt-3">
-                                  <label for="dish_rus" class="block mb-2 text-[16px] font-medium text-gray-900 dark:text-white">O'quvchi F.I.O</label>
-                                  <input v-model="contactInfo.dish_rus" type="text" name="dish_rus" id="dish_rus" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ismi familiyasi va otasining ismi" required="">
+                                  <label for="student_name" class="block mb-2 text-[16px] font-medium text-gray-900 dark:text-white">O'quvchi F.I.O</label>
+                                  <input v-model="contactInfo.student_name" type="text" name="student_name" id="student_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ismi familiyasi va otasining ismi" required="">
                                 </div>
                                 <div class="mt-3 flex items-center justify-between">
                                   <div class="">
-                                    <label for="timeSelector" class="block mb-2 text-[16px] font-medium text-gray-900 dark:text-white">Jinsi</label>
+                                    <label for="s" class="block mb-2 text-[16px] font-medium text-gray-900 dark:text-white">Jinsi</label>
                                     <select id="timeSelector" class="w-[100%] font-bold py-2 px-2 text-[14px] border border-gray-300 outline-none rounded-lg">
                                       <option value="time1">Erkak</option>
                                       <option value="time2">Ayol</option>
@@ -171,9 +170,6 @@
                         <button v-if="!isUpdate" @click="addContact($event)" type="submit" class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                             Saqlash
                         </button>
-                        <button v-else @click="modifyContact($event)" type="submit" class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                            Yangilash
-                        </button>
                     </div>
                 </form>
             </div>
@@ -198,6 +194,7 @@
               <th scope="col" class="px-4 py-3 text-center border border-white">Kurs nomi</th>
               <th scope="col" class="px-4 py-3 text-center border border-white">Boshlanish sanasi</th>
               <th scope="col" class="px-4 py-3 text-center border border-white"></th>
+              <th scope="col" class="px-4 py-3 text-center border border-white"></th>
             </tr>
           </thead>
           <tbody class="">
@@ -213,7 +210,10 @@
               <td class="px-4 py-3 border border-black">O`quvchi 40-maktab</td>
               <td class="px-4 py-3 border border-black">Foundation</td>
               <td class="px-4 py-3 text-center border border-black">23.07.2024 yil</td>
-              <td class="px-4 py-3 border border-black"><router-link to="/detail_student" class="text-blue-500 font-[700]">Batafsil</router-link></td>
+              <td class="px-4 py-3 border border-black">
+                <router-link to="/detail_student" class="text-blue-500 font-[700]">Batafsil</router-link>
+              </td>
+              <td class="px-4 py-3 text-center border border-black"><i class='bx bx-trash text-[20px] text-red-500 cursor' ></i></td>
             </tr>
           </tbody>
         </table>
@@ -256,8 +256,8 @@
     const uploadProgress = vueRef(0);
     
     const contactInfo = reactive({
-        note_uzb: '',
-        dish_uzb: '',
+        student_id: '',
+        student_name: '',
         dish_rus: '',
         dish_eng: ''
     })
@@ -266,8 +266,8 @@
         
         if(modal.value){
             isUpdate.value = false
-            contactInfo.note_uzb=''
-            contactInfo.dish_uzb=''
+            contactInfo.student_id=''
+            contactInfo.student_name=''
             contactInfo.dish_rus=''
             contactInfo.dish_eng=''
         }
@@ -279,7 +279,7 @@
             store.state.list = res.data    
         }).catch((error)=>{
             if(error.message == 'Request failed with status code 401' || error.message == 'token expired' || error.message == 'token not found'){
-                router.push({note_uzb: 'login'})
+                router.push({student_id: 'login'})
             }
             else{
                 console.log(error);
@@ -291,16 +291,16 @@
     const addContact=(evet)=>{
         evet.preventDefault();
         const contact = {
-            note_uzb: contactInfo.note_uzb,
-            dish_uzb: contactInfo.dish_uzb,
+            student_id: contactInfo.student_id,
+            student_name: contactInfo.student_name,
             dish_rus: contactInfo.dish_rus,
             dish_eng: imageUrl.value
         }
     
         courseStudent.create(contact).then((res)=>{
             if(res.status == 201){
-                contactInfo.note_uzb=''
-                contactInfo.dish_uzb=''
+                contactInfo.student_id=''
+                contactInfo.student_name=''
                 contactInfo.dish_rus=''
                 imageUrl.value=''
                 toggleModal()
@@ -308,7 +308,7 @@
             }
         }).catch((error)=>{
             if(error.message == 'Request failed with status code 401' || error.message == 'token expired' || error.message == 'token not found'){
-                router.push({note_uzb: 'login'})
+                router.push({student_id: 'login'})
             }
             console.log(error.message);
         })
@@ -326,7 +326,7 @@
       if (file.value) {
           try {
           console.log(file.value);
-          const storageRef = firebaseRef(storage, 'employee/' + file.value.note_uzb);
+          const storageRef = firebaseRef(storage, 'students/' + file.value.student_id);
           const uploadTask = uploadBytes(storageRef, file.value);
   
           uploadTask
