@@ -47,8 +47,8 @@
                                     <input v-model="contactInfo.birthdate" id="birthdate" type="date" name="birthdate" class="rounded-lg outline-none border-gray-300">
                                   </div>
                                   <div class="">
-                                    <label for="Identity_document" class="block mb-2 text-[16px] font-medium text-gray-900 dark:text-white">Shaxsni tasdiqlovchi hujjat</label>
-                                    <input v-model="contactInfo.Identity_document" type="text" name="Identity_document" id="Identity_document" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="AA   _________________" required="">
+                                    <label for="identity_document" class="block mb-2 text-[16px] font-medium text-gray-900 dark:text-white">Shaxsni tasdiqlovchi hujjat</label>
+                                    <input v-model="contactInfo.identity_document" type="text" name="identity_document" id="identity_document" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="AA   _________________" required="">
                                   </div>
                                 </div>
                                 <div class="mt-3">
@@ -211,7 +211,7 @@
               <td class="px-4 py-3 border border-black">Foundation</td>
               <td class="px-4 py-3 text-center border border-black">23.07.2024 yil</td>
               <td class="px-4 py-3 border border-black">
-                <router-link to="/detail_student" class="text-blue-500 font-[700]">Batafsil</router-link>
+                <router-link to="/detail_student" @click="detail()" class="text-blue-500 font-[700]">Batafsil</router-link>
               </td>
               <td class="px-4 py-3 text-center border border-black"><i class='bx bx-trash text-[20px] text-red-500 cursor' ></i></td>
             </tr>
@@ -231,7 +231,7 @@
   
   <script setup>
     import {ref as vueRef, reactive, computed, onMounted} from 'vue'
-    import { initDropdowns, Modal } from 'flowbite'
+    import { Modal } from 'flowbite'
     import { courseStudentStore } from '../../stores/CourseStudentStore/courseStudentStore';
     import {useRouter} from 'vue-router'
     import { courseStudent } from '../../services/CourseStudent/index';
@@ -269,13 +269,18 @@
       contactInfo.select_time = selectedValue;
       console.log(contactInfo.select_time);
     };
+
+    const detail = (id) => {
+      sessionStorage.setItem('student_id', id)
+    }
+  
     
     const contactInfo = reactive({
         student_id: '',
         student_name: '',
         selectSex: '',
         birthdate: '',
-        Identity_document: '',
+        identity_document: '',
         address: '',
         social_status: '',
         phone_number: '',
@@ -297,120 +302,36 @@
         course_studentPhoto: ''
     })
     
-    const toggleModal = () => {
-        
-        if(modal.value){
-            isUpdate.value = false
-            contactInfo.student_id=''
-            contactInfo.student_name=''
-            contactInfo.selectSex=''
-            contactInfo.birthdate=''
-            contactInfo.Identity_document=''
-            contactInfo.address=''
-            contactInfo.social_status=''
-            contactInfo.phone_number=''
-            contactInfo.course_name=''
-            contactInfo.start_date=''
-            contactInfo.duration=''
-            contactInfo.end_date=''
-            contactInfo.course_price=''
-            contactInfo.listener_status=''
-            contactInfo.contract=''
-            contactInfo.teacher=''
-            contactInfo.group=''
-            contactInfo.days=''
-            contactInfo.select_time=''
-            contactInfo.bootcamp=''
-            contactInfo.sertificate_status=''
-            contactInfo.sertificate=''
-            contactInfo.employment=''
-            contactInfo.course_studentPhoto=''
-        }
-        modal.value = !modal.value
+  const toggleModal = () => {
+    if(modal.value){
+      isUpdate.value = false;
+    Object.keys(contactInfo).forEach(key => contactInfo[key] = '');
     }
+    modal.value = !modal.value;
+  };
     
-    const updateList = () => {
-        courseStudent.list().then((res)=>{
-            store.state.list = res.data    
-        }).catch((error)=>{
-            if(error.message == 'Request failed with status code 401' || error.message == 'token expired' || error.message == 'token not found'){
-                router.push({student_id: 'login'})
-            }
-            else{
-                console.log(error);
-            }
-            console.log(error.message);
-        })
-    }
+  const getlist = () => {
+    courseStudent.list().then((res)=>{
+      store.state.list = res.data    
+    }).catch((error)=>{
+        console.log(error.message);
+      })
+  }
     
     const addContact=(evet)=>{
         evet.preventDefault();
-        const contact = {
-            student_id: contactInfo.student_id,
-            student_name: contactInfo.student_name,
-            selectSex: contactInfo.selectSex,
-            birthdate: contactInfo.birthdate,
-            Identity_document: contactInfo.Identity_document,
-            address: contactInfo.address,
-            social_status: contactInfo.social_status,
-            phone_number: contactInfo.phone_number,
-            course_name: contactInfo.course_name,
-            start_date: contactInfo.start_date,
-            duration: contactInfo.duration,
-            end_date: contactInfo.end_date,
-            course_price: contactInfo.course_price,
-            listener_status: contactInfo.listener_status,
-            contract: contactInfo.contract,
-            teacher: contactInfo.teacher,
-            group: contactInfo.group,
-            days: contactInfo.days,
-            select_time: contactInfo.select_time,
-            bootcamp: contactInfo.bootcamp,
-            sertificate_status: contactInfo.sertificate_status,
-            sertificate: contactInfo.sertificate,
-            employment: contactInfo.employment,
-            course_studentPhoto: imageUrl.value,
-          }
+        const contact = { ...contactInfo, course_studentPhoto: imageUrl.value}
     
         courseStudent.create(contact).then((res)=>{
             if(res.status == 201){
-                contactInfo.student_id = ''
-                contactInfo.student_name = ''
-                contactInfo.selectSex = ''
-                contactInfo.birthdate = ''
-                contactInfo.Identity_document = ''
-                contactInfo.address = ''
-                contactInfo.social_status = ''
-                contactInfo.phone_number = ''
-                contactInfo.course_name = ''
-                contactInfo.start_date = ''
-                contactInfo.duration = ''
-                contactInfo.end_date = ''
-                contactInfo.course_price = ''
-                contactInfo.listener_status = ''
-                contactInfo.contract = ''
-                contactInfo.teacher = ''
-                contactInfo.group = ''
-                contactInfo.days = ''
-                contactInfo.select_time = ''
-                contactInfo.bootcamp = ''
-                contactInfo.sertificate_status = ''
-                contactInfo.sertificate = ''
-                contactInfo.employment = ''
-                imageUrl.value = ''
-
-                toggleModal()
+                Object.keys(contactInfo).forEach(key => contactInfo[key] = '');
+                imageUrl.value = '';
+                toggleModal();
                 updateList();
             }
         }).catch((error)=>{
-            if(error.message == 'Request failed with status code 401' || error.message == 'token expired' || error.message == 'token not found'){
-                router.push({student_id: 'login'})
-            }
-            console.log(error.message);
+          console.log(error.message);
         })
-  }
-  const detail = (id) => {
-    localStorage.setItem('student_id', id)
   }
   
     // =============================================================
@@ -450,8 +371,7 @@
     })
     
     onMounted(()=>{
-        updateList()
-        initDropdowns()
+        getlist()
     })
 
   //   const totalPages = computed(() => {
