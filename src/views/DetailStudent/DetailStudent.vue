@@ -4,8 +4,8 @@
            <div class="px-5 w-full ">
                 <div class="flex justify-center gap-[100px]">
                     <div class="">
-                        <img src="../../assets/images/students/human.jpg" alt="human" class="w-[150px] border border-black p-1 mx-auto">
-                        <h1 class="text-[18px] font-[700] text-center my-[10px] m-5">Eshmatov Toshmat Eshon o`g`li</h1>
+                        <img :src="computedList.course_studentPhoto" alt="human" class="w-[150px] border border-black p-1 mx-auto">
+                        <h1 class="text-[18px] font-[700] text-center my-[10px] m-5">{{computedList.student_name}}</h1>
                     </div>
                     <div class="grid gap-6">
                         <div>
@@ -21,11 +21,11 @@
                                 </thead>
                                 <tbody class="bg-gray-100">
                                     <tr class="border-b dark:border-gray-700">
-                                        <td class="px-4 py-3 text-center">01.01.2008</td>
-                                        <td class="px-4 py-3 text-center">NA 0415609</td>
-                                        <td class="px-4 py-3 text-center">Ulug'bek MFY, Mustaqillik Ko'chasi 10a dom 4 xonadon</td>
-                                        <td class="px-4 py-3 text-center">+998901234567</td>
-                                        <td class="px-4 py-3 text-center">Erkak</td>
+                                        <td class="px-4 py-3 text-center">{{computedList.birthdate}}</td>
+                                        <td class="px-4 py-3 text-center">{{computedList.identity_document}}</td>
+                                        <td class="px-4 py-3 text-center">{{computedList.address}}</td>
+                                        <td class="px-4 py-3 text-center">{{computedList.phone_number}}</td>
+                                        <td class="px-4 py-3 text-center">{{computedList.selectSex}}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -43,11 +43,11 @@
                                 </thead>
                                 <tbody class="bg-gray-100">
                                     <tr class="border-b dark:border-gray-700">
-                                        <td class="px-4 py-3 text-center">Maktab o`quvchisi 40-maktab 5v-sinf</td>
-                                        <td class="px-4 py-3 text-center">Foundation</td>
-                                        <td class="px-4 py-3 text-center">05.01.2024</td>
-                                        <td class="px-4 py-3 text-center">4 oy</td>
-                                        <td class="px-4 py-3 text-center">05.04.2024</td>
+                                        <td class="px-4 py-3 text-center">{{computedList.social_status}}</td>
+                                        <td class="px-4 py-3 text-center">{{computedList.course_name}}</td>
+                                        <td class="px-4 py-3 text-center">{{computedList.start_date}}</td>
+                                        <td class="px-4 py-3 text-center">{{computedList.duration}}</td>
+                                        <td class="px-4 py-3 text-center">{{computedList.end_date}}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -60,8 +60,6 @@
             <table class="w-full text-md">
                 <thead class="text-sm text-white font-bold uppercase bg-gray-500">
                     <tr class="">
-                        <th scope="col" class="px-4 py-3 text-center border border-white">Bir oylik kurs narxi</th>
-                        <th scope="col" class="px-4 py-3 text-center border border-white">Imtiyoz</th>
                         <th scope="col" class="px-4 py-3 text-center border border-white">Kurs narxi</th>
                         <th scope="col" class="px-4 py-3 text-center border border-white">O'qituvchi</th>
                         <th scope="col" class="px-4 py-3 text-center border border-white">Shartnoma raqami va sanasi</th>
@@ -70,12 +68,10 @@
                 </thead>
                 <tbody class="bg-gray-100">
                     <tr class="border-b dark:border-gray-700">
-                        <td class="px-4 py-3 text-center">400000 so`m</td>
-                        <td class="px-4 py-3 text-center">0</td>
-                        <td class="px-4 py-3 text-center">1600000 so'm</td>
-                        <td class="px-4 py-3 text-center">Muxiddinov ABdurahmon</td>
-                        <td class="px-4 py-3 text-center">-</td>
-                        <td class="px-4 py-3 text-center">O`qimoqda</td>
+                        <td class="px-4 py-3 text-center">{{computedList.course_price}}</td>
+                        <td class="px-4 py-3 text-center">{{computedList.teacher}}</td>
+                        <td class="px-4 py-3 text-center">{{computedList.contract}}</td>
+                        <td class="px-4 py-3 text-center">{{computedList.listener_status}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -95,13 +91,13 @@
                 </thead>
                 <tbody class="bg-gray-100">
                     <tr class="border-b dark:border-gray-700">
-                        <td class="px-4 py-3 text-center">No.=1</td>
-                        <td class="px-4 py-3 text-center">Har kuni</td>
-                        <td class="px-4 py-3 text-center">08:00 - 10:00</td>
-                        <td class="px-4 py-3 text-center">-</td>
-                        <td class="px-4 py-3 text-center">-</td>
-                        <td class="px-4 py-3 text-center">-</td>
-                        <td class="px-4 py-3 text-center">-</td>
+                        <td class="px-4 py-3 text-center">{{computedList.group}}</td>
+                        <td class="px-4 py-3 text-center">{{computedList.days}}</td>
+                        <td class="px-4 py-3 text-center">{{computedList.select_time}}</td>
+                        <td class="px-4 py-3 text-center">{{computedList.bootcamp}}</td>
+                        <td class="px-4 py-3 text-center">{{computedList.sertificate_status}}</td>
+                        <td class="px-4 py-3 text-center">{{computedList.sertificate}}</td>
+                        <td class="px-4 py-3 text-center">{{computedList.employment}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -133,8 +129,8 @@
            <div class="px-5 w-full ">
                 <div class="flex justify-center gap-[100px]">
                     <div class="">
-                        <img src="../../assets/images/students/human.jpg" alt="human" class="w-[150px] border border-black p-1 mx-auto">
-                        <h1 class="text-[18px] font-[700] text-center my-[10px] m-5">Eshmatov Toshmat Eshon o`g`li</h1>
+                        <img :src="computedList.course_studentPhoto" alt="human" class="w-[150px] border border-black p-1 mx-auto">
+                        <h1 class="text-[18px] font-[700] text-center my-[10px] m-5">{{computedList.student_name}}</h1>
                     </div>
                     <div class="grid gap-6">
                         <div>
@@ -150,11 +146,11 @@
                                 </thead>
                                 <tbody class="bg-gray-100">
                                     <tr class="border-b dark:border-gray-700">
-                                        <td class="px-4 py-3 text-center">01.01.2008</td>
-                                        <td class="px-4 py-3 text-center">NA 0415609</td>
-                                        <td class="px-4 py-3 text-center">Ulug'bek MFY, Mustaqillik Ko'chasi 10a dom 4 xonadon</td>
-                                        <td class="px-4 py-3 text-center">+998901234567</td>
-                                        <td class="px-4 py-3 text-center">Erkak</td>
+                                        <td class="px-4 py-3 text-center">{{computedList.birthdate}}</td>
+                                        <td class="px-4 py-3 text-center">{{computedList.identity_document}}</td>
+                                        <td class="px-4 py-3 text-center">{{computedList.address}}</td>
+                                        <td class="px-4 py-3 text-center">{{computedList.phone_number}}</td>
+                                        <td class="px-4 py-3 text-center">{{computedList.selectSex}}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -172,11 +168,11 @@
                                 </thead>
                                 <tbody class="bg-gray-100">
                                     <tr class="border-b dark:border-gray-700">
-                                        <td class="px-4 py-3 text-center">Maktab o`quvchisi 40-maktab 5v-sinf</td>
-                                        <td class="px-4 py-3 text-center">Foundation</td>
-                                        <td class="px-4 py-3 text-center">05.01.2024</td>
-                                        <td class="px-4 py-3 text-center">4 oy</td>
-                                        <td class="px-4 py-3 text-center">05.04.2024</td>
+                                        <td class="px-4 py-3 text-center">{{computedList.social_status}}</td>
+                                        <td class="px-4 py-3 text-center">{{computedList.course_name}}</td>
+                                        <td class="px-4 py-3 text-center">{{computedList.start_date}}</td>
+                                        <td class="px-4 py-3 text-center">{{computedList.duration}}</td>
+                                        <td class="px-4 py-3 text-center">{{computedList.end_date}}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -189,8 +185,6 @@
             <table class="w-full text-md">
                 <thead class="text-sm text-white font-bold uppercase bg-gray-500">
                     <tr class="">
-                        <th scope="col" class="px-4 py-3 text-center border border-white">Bir oylik kurs narxi</th>
-                        <th scope="col" class="px-4 py-3 text-center border border-white">Imtiyoz</th>
                         <th scope="col" class="px-4 py-3 text-center border border-white">Kurs narxi</th>
                         <th scope="col" class="px-4 py-3 text-center border border-white">O'qituvchi</th>
                         <th scope="col" class="px-4 py-3 text-center border border-white">Shartnoma raqami va sanasi</th>
@@ -199,12 +193,10 @@
                 </thead>
                 <tbody class="bg-gray-100">
                     <tr class="border-b dark:border-gray-700">
-                        <td class="px-4 py-3 text-center">400000 so`m</td>
-                        <td class="px-4 py-3 text-center">0</td>
-                        <td class="px-4 py-3 text-center">1600000 so'm</td>
-                        <td class="px-4 py-3 text-center">Muxiddinov ABdurahmon</td>
-                        <td class="px-4 py-3 text-center">-</td>
-                        <td class="px-4 py-3 text-center">O`qimoqda</td>
+                        <td class="px-4 py-3 text-center">{{computedList.course_price}}</td>
+                        <td class="px-4 py-3 text-center">{{computedList.teacher}}</td>
+                        <td class="px-4 py-3 text-center">{{computedList.contract}}</td>
+                        <td class="px-4 py-3 text-center">{{computedList.listener_status}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -224,13 +216,13 @@
                 </thead>
                 <tbody class="bg-gray-100">
                     <tr class="border-b dark:border-gray-700">
-                        <td class="px-4 py-3 text-center">No.=1</td>
-                        <td class="px-4 py-3 text-center">Har kuni</td>
-                        <td class="px-4 py-3 text-center">08:00 - 10:00</td>
-                        <td class="px-4 py-3 text-center">-</td>
-                        <td class="px-4 py-3 text-center">-</td>
-                        <td class="px-4 py-3 text-center">-</td>
-                        <td class="px-4 py-3 text-center">-</td>
+                        <td class="px-4 py-3 text-center">{{computedList.group}}</td>
+                        <td class="px-4 py-3 text-center">{{computedList.days}}</td>
+                        <td class="px-4 py-3 text-center">{{computedList.select_time}}</td>
+                        <td class="px-4 py-3 text-center">{{computedList.bootcamp}}</td>
+                        <td class="px-4 py-3 text-center">{{computedList.sertificate_status}}</td>
+                        <td class="px-4 py-3 text-center">{{computedList.sertificate}}</td>
+                        <td class="px-4 py-3 text-center">{{computedList.employment}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -452,17 +444,26 @@
         bootcamp: '',
         sertificate_status: '',
         sertificate: '',
-        employment: ''
+        employment: '',
+        course_studentPhoto: ''
     });
 
      const getList = () => {
-        courseStudent.list().then((res)=>{
-            store.state.list = res.data    
-            console.log(store.state.list);
-        }).catch((error)=>{
-            console.log(error.message);
-        })
+    const id = sessionStorage.getItem('student_id'); 
+    if (id) {
+        courseStudent.listId(id)
+            .then((res) => {
+                store.state.list = res.data;
+                console.log(store.state.list);
+            })
+            .catch((error) => {
+                console.log(error.message);
+            });
+    } else {
+        console.error("No student ID found in sessionStorage");
     }
+};
+
 
      const modifyContact=(event)=>{
       event.preventDefault();
@@ -512,6 +513,7 @@
       contactInfo.sertificate_status = foundContact[0].sertificate_status
       contactInfo.sertificate = foundContact[0].sertificate
       contactInfo.employment = foundContact[0].employment
+      contactInfo.course_studentPhoto = foundContact[0].course_studentPhoto
 
       toggleModal();
     }

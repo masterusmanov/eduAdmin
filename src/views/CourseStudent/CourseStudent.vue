@@ -197,21 +197,20 @@
               <th scope="col" class="px-4 py-3 text-center border border-white"></th>
             </tr>
           </thead>
-          <tbody class="">
-            <!-- v-for="el in users" :key="el.id"  --> 
-            <tr href="/detail_student" class="border-b dark:border-gray-700"> 
-              <td class="px-4 py-3 text-center border border-black">1</td>
-              <td class="px-4 py-3 text-center border border-black">1234</td>
-              <td class="px-4 py-3 border border-black">Eshmatov Toshmat Eshon o`g`li</td>
-              <td class="px-4 py-3 text-center border border-black">01.01.2008</td>
-              <td class="px-4 py-3 text-center border border-black">INA-123456</td>
-              <td class="px-4 py-3 border border-black">Uchqo`rg`on tumani Andijon MFY Andijon ko`chasi</td>
-              <td class="px-4 py-3 text-center border border-black">+998901234567</td>
-              <td class="px-4 py-3 border border-black">O`quvchi 40-maktab</td>
-              <td class="px-4 py-3 border border-black">Foundation</td>
-              <td class="px-4 py-3 text-center border border-black">23.07.2024 yil</td>
+          <tbody class="">  
+            <tr v-for="el in computedList" :key="el.id" class="border-b dark:border-gray-700"> 
+              <td class="px-4 py-3 text-center border border-black">{{el.id}}</td>
+              <td class="px-4 py-3 text-center border border-black">{{el.student_id}}</td>
+              <td class="px-4 py-3 border border-black">{{el.student_name}}</td>
+              <td class="px-4 py-3 text-center border border-black">{{el.birthdate}}</td>
+              <td class="px-4 py-3 text-center border border-black">{{el.identity_document}}</td>
+              <td class="px-4 py-3 border border-black">{{el.address}}</td>
+              <td class="px-4 py-3 text-center border border-black">{{el.phone_number}}</td>
+              <td class="px-4 py-3 border border-black">{{el.social_status}}</td>
+              <td class="px-4 py-3 border border-black">{{el.course_name}}</td>
+              <td class="px-4 py-3 text-center border border-black">{{el.start_date}}</td>
               <td class="px-4 py-3 border border-black">
-                <router-link to="/detail_student" @click="detail()" class="text-blue-500 font-[700]">Batafsil</router-link>
+                <router-link to="/detail_student" @click="detail(el.id)" class="text-blue-500 font-[700]">Batafsil</router-link>
               </td>
               <td class="px-4 py-3 text-center border border-black"><i class='bx bx-trash text-[20px] text-red-500 cursor' ></i></td>
             </tr>

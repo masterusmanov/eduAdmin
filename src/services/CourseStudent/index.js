@@ -15,6 +15,13 @@ export const courseStudent = {
       },
     }),
 
+  listId: (id) =>
+    axios.get(`/api/course-student/${id}`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }),
+
   remove: (id) =>
     axios.delete(`/api/course-student/${id}`, {
       headers: {
