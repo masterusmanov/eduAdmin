@@ -22,7 +22,7 @@
                     </button>
                 </div>
                 <!-- Modal body -->
-                <form >
+                <form @submit.prevent="addContact($event)">
                     <div class="grid gap-4 mb-4 sm:grid-cols-1">
                         <div class="flex justify-between gap-6">
                             <div class="w-[48%]">
@@ -62,7 +62,7 @@
                                    </div>
                                    <div>
                                      <label for="phone_number" class="block mb-2 text-[16px] font-medium text-gray-900 dark:text-white">Telefon raqami</label>
-                                    <input type="phone" name="phone_number" id="phone_number" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Telefon raqami" required="">
+                                    <input v-model="contactInfo.phone_number" type="tel" name="phone_number" id="phone_number" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Telefon raqami" required="">
                                    </div>
                                 </div>
                                 <div class="mt-3 flex items-center justify-between gap-3">
@@ -113,9 +113,9 @@
                                   <div>
                                     <label for="days" class="block mb-2 text-[16px] font-medium text-gray-900 dark:text-white">Kuni</label>
                                     <select id="days"  @change="handleDaysChange($event.target.value)" class="w-[100%] font-bold py-2 px-2 text-[14px] border border-gray-300 outline-none rounded-lg">
-                                      <option value="time1">Har kuni</option>
-                                      <option value="time2">Toq kunlar</option>
-                                      <option value="time2">Juft kunlar</option>
+                                      <option value="everyday">Har kuni</option>
+                                      <option value="odddays">Toq kunlar</option>
+                                      <option value="coupledays">Juft kunlar</option>
                                     </select>
                                   </div>
                                   <div>
@@ -151,27 +151,27 @@
                                     <input v-model="contactInfo.employment" type="text" name="employment" id="employment" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ish bilan ta'minlanish" required="">
                                   </div>
                                 </div>
-                                <div class="grid justify-beetwen items-center my-14 gap-6">
-                                    <h3 class="text-[] font-[500]">Rasm yuklash PNG, JPG (400x300px)</h3>
-                                    <div class="w-[90%] flex gap-6 items-center  ">
-                                        <input type="file" @change="handleFileChange" />
-                                        <button class="bg-blue-600 text-white px-3 py-1 rounded-lg" @click="uploadImage">Rasm yuklang!</button>
-                                    </div>
-                                </div>
+                              </div>
+                            </div>
+<!--                             
+                            <div class="">
+                              <img v-if="imageUrl" :src="imageUrl" alt="Uploaded Image" />
+                            </div> -->
+                            
+                          </div>
+                          <div class="flex justify-end items-center">
+                            <button type="submit" class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                              Saqlash
+                            </button>
+                          </div>
+                        </form>
+                        <div class="grid justify-beetwen items-center my-14 gap-6">
+                            <h3 class="text-[] font-[500]">Rasm yuklash PNG, JPG (400x300px)</h3>
+                            <div class="w-[90%] flex gap-6 items-center  ">
+                                <input type="file" @change="handleFileChange" />
+                                <button class="bg-blue-600 text-white px-3 py-1 rounded-lg" @click="uploadImage">Rasm yuklang!</button>
                             </div>
                         </div>
-                        
-                      <div class="">
-                          <img v-if="imageUrl" :src="imageUrl" alt="Uploaded Image" />
-                      </div>
-                      
-                    </div>
-                    <div class="flex justify-end items-center">
-                        <button v-if="!isUpdate" @click="addContact($event)" type="submit" class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                            Saqlash
-                        </button>
-                    </div>
-                </form>
             </div>
         </div>
     </div>
@@ -198,7 +198,7 @@
             </tr>
           </thead>
           <tbody class="">  
-            <tr v-for="el in computedList" :key="el.id" class="border-b dark:border-gray-700"> 
+            <tr v-for="el in paginatedData" :key="el.id" class="border-b dark:border-gray-700"> 
               <td class="px-4 py-3 text-center border border-black">{{el.id}}</td>
               <td class="px-4 py-3 text-center border border-black">{{el.student_id}}</td>
               <td class="px-4 py-3 border border-black">{{el.student_name}}</td>
@@ -212,7 +212,7 @@
               <td class="px-4 py-3 border border-black">
                 <router-link to="/detail_student" @click="detail(el.id)" class="text-blue-500 font-[700]">Batafsil</router-link>
               </td>
-              <td class="px-4 py-3 text-center border border-black"><i class='bx bx-trash text-[20px] text-red-500 cursor' ></i></td>
+              <td class="px-4 py-3 text-center border border-black"><i class='bx bx-trash text-[20px] text-red-500 cursor-pointer'  @click="removeContact(el.id)"></i></td>
             </tr>
           </tbody>
         </table>
@@ -239,8 +239,8 @@
     
     const modal = vueRef(false);  
     const isShowModal = vueRef(false);
-    // const currentPage = ref(1);
-    // const itemsPerPage = 10;
+    const currentPage = vueRef(1);
+    const itemsPerPage = 8;
     
     function showModal() {
         isShowModal.value = !isShowModal.value
@@ -320,19 +320,32 @@
     const addContact=(evet)=>{
         evet.preventDefault();
         const contact = { ...contactInfo, course_studentPhoto: imageUrl.value}
-    
+          
+        console.log('Payload:', contact);
+
         courseStudent.create(contact).then((res)=>{
-            if(res.status == 201){
+            if(res.status === 201){
                 Object.keys(contactInfo).forEach(key => contactInfo[key] = '');
                 imageUrl.value = '';
                 toggleModal();
-                updateList();
+                getlist();
             }
         }).catch((error)=>{
           console.log(error.message);
+          console.log('Response Data:', error.response.data);
         })
   }
-  
+
+  const removeContact = (id) => {
+    
+      courseStudent.remove(id).then((res)=>{
+          if(res.status == 200){
+              getlist();
+          }
+      }).catch((error)=>{
+          console.log(error);
+      })
+  }
     // =============================================================
     const handleFileChange = (e) => {
           file.value = e.target.files[0];
@@ -342,7 +355,7 @@
       if (file.value) {
           try {
           console.log(file.value);
-          const storageRef = firebaseRef(storage, 'students/' + file.value.student_id);
+          const storageRef = firebaseRef(storage, 'students/' + file.value.name);
           const uploadTask = uploadBytes(storageRef, file.value);
   
           uploadTask
@@ -373,27 +386,27 @@
         getlist()
     })
 
-  //   const totalPages = computed(() => {
-  //   return Math.ceil(computedList.value.length / itemsPerPage);
-  // });
+    const totalPages = computed(() => {
+    return Math.ceil(computedList.value.length / itemsPerPage);
+  });
 
-  // const paginatedData = computed(() => {
-  //   const start = (currentPage.value - 1) * itemsPerPage;
-  //   const end = start + itemsPerPage;
-  //   return computedList.value.slice(start, end);
-  // });
+  const paginatedData = computed(() => {
+    const start = (currentPage.value - 1) * itemsPerPage;
+    const end = start + itemsPerPage;
+    return computedList.value.slice(start, end);
+  });
 
-  // const prevPage = () => {
-  //   if (currentPage.value > 1) {
-  //     currentPage.value -= 1;
-  //   }
-  // };
+  const prevPage = () => {
+    if (currentPage.value > 1) {
+      currentPage.value -= 1;
+    }
+  };
 
-  // const nextPage = () => {
-  //   if (currentPage.value < totalPages.value) {
-  //     currentPage.value += 1;
-  //   }
-  // };
+  const nextPage = () => {
+    if (currentPage.value < totalPages.value) {
+      currentPage.value += 1;
+    }
+  };
   </script>
   
   <style lang="scss" scoped>
