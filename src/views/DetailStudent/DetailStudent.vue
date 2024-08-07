@@ -236,7 +236,7 @@
     </div>
 <!-- ======================== Modal =================================== -->
         <div v-if="isOpen" class="overflow-y-auto flex  bg-[rgba(0,0,0,0.4)] overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full" @click="closeModal">
-            <div class="relative w-[1100px] p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5" @click.stop>
+            <div class="relative w-[550px] p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5" @click.stop>
                 <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
                     <h3 class="text-[24px] font-semibold text-gray-900 dark:text-white">
                         <span>O'quvchi haqidagi malumotlarni yangilash</span>
@@ -249,139 +249,77 @@
                 <form >
                     <div class="grid gap-4 mb-4 sm:grid-cols-1">
                         <div class="flex justify-between gap-6">
-                            <div class="w-[48%]">
-                                <div class="mt-3">
-                                    <label for="student_id" class="block mb-2 text-[16px] font-medium text-gray-900 dark:text-white">O'quvchi ID raqami</label>
-                                    <input v-model="contactInfo.student_id" type="text" name="student_id" id="student_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="O'quvchi ID raqami" required="">
-                                </div>
-                                <div class="mt-3">
-                                  <label for="student_name" class="block mb-2 text-[16px] font-medium text-gray-900 dark:text-white">O'quvchi F.I.O</label>
-                                  <input v-model="contactInfo.student_name" type="text" name="student_name" id="student_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ismi familiyasi va otasining ismi" required="">
-                                </div>
-                                <div class="mt-3 flex items-center justify-between">
-                                  <div class="">
-                                    <label for="selectSex" class="block mb-2 text-[16px] font-medium text-gray-900 dark:text-white">Jinsi</label>
-                                    <select id="selectSex" @change="handleSelectSexChange($event.target.value)" class="w-[100%] font-bold py-2 px-2 text-[14px] border border-gray-300 outline-none rounded-lg">
-                                      <option value="male">Erkak</option>
-                                      <option value="famale">Ayol</option>
-                                    </select>
-                                  </div>
-                                  <div>
-                                    <label for="birthdate" class="block mb-2 text-[16px] font-medium text-gray-900 dark:text-white">Tug'ilgan sanasi</label>
-                                    <input v-model="contactInfo.birthdate" id="birthdate" type="date" name="birthdate" class="rounded-lg outline-none border-gray-300">
-                                  </div>
-                                  <div class="">
-                                    <label for="identity_document" class="block mb-2 text-[16px] font-medium text-gray-900 dark:text-white">Shaxsni tasdiqlovchi hujjat</label>
-                                    <input v-model="contactInfo.identity_document" type="text" name="identity_document" id="identity_document" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="AA   _________________" required="">
-                                  </div>
-                                </div>
-                                <div class="mt-3">
-                                    <label for="address" class="block mb-2 text-[16px] font-medium text-gray-900 dark:text-white">Manzili</label>
-                                    <input v-model="contactInfo.address" type="text" name="address" id="address" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Manzili" required="">
-                                </div>
-                                <div class="mt-3 flex items-center justify-between">
-                                   <div>
-                                     <label for="social_status" class="block mb-2 text-[16px] font-medium text-gray-900 dark:text-white">Tinglovchini ijtimoiy statusi</label>
-                                    <input v-model="contactInfo.social_status" type="text" name="social_status" id="social_status" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="O'quvchi yoki talaba " required="">
-                                   </div>
-                                   <div>
-                                     <label for="phone_number" class="block mb-2 text-[16px] font-medium text-gray-900 dark:text-white">Telefon raqami</label>
-                                    <input type="phone" name="phone_number" id="phone_number" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Telefon raqami" required="">
-                                   </div>
-                                </div>
-                                <div class="mt-3 flex items-center justify-between gap-3">
+                            <div class="">
+                                <div class="flex gap-6 mt-6">
                                     <div>
-                                      <label for="course_name" class="block mb-2 text-[16px] font-medium text-gray-900 dark:text-white">Kurs nomi</label>
-                                      <input v-model="contactInfo.course_name" type="text" name="course_name" id="course_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Kurs nomi" required="">
+                                        <label for="teacher" class="block mb-2 text-[16px] font-medium text-gray-900 dark:text-white">O'qituvchi</label>
+                                        <input v-model="computedList.teacher" type="text" name="teacher" id="teacher" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-[280px] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="O'qituvchi F.I.O" required="">
                                     </div>
                                     <div>
-                                      <label for="start_date" class="block mb-2 text-[16px] font-medium text-gray-900 dark:text-white">Boshlanish sanasi</label>
-                                      <input v-model="contactInfo.start_date" id="start_date" type="date" name="start_date" class="rounded-lg outline-none border-gray-300">
+                                         <label for="phone_number" class="block mb-2 text-[16px] font-medium text-gray-900 dark:text-white">Telefon raqami</label>
+                                        <input v-model="computedList.phone_number" type="phone" name="phone_number" id="phone_number" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Telefon raqami" required="">
+                                    </div>
+                                </div> 
+                                <div class="flex gap-6 mt-6">
+                                    <div class="">
+                                        <label for="course_price" class="block mb-2 text-[16px] font-medium text-gray-900 dark:text-white">Bir kurs narxi</label>
+                                        <input v-model="computedList.course_price" type="text" name="course_price" id="course_price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Bir kurs narxi" required="">
+                                    </div>
+                                    <div class="">
+                                        <label for="listener_status" class="block mb-2 text-[16px] font-medium text-gray-900 dark:text-white">Tinglovchi statusi</label>
+                                        <input v-model="computedList.listener_status" type="text" name="listener_status" id="listener_status" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Tinglovchi statusi" required="">
+                                    </div>
+                                </div>
+                                <div class="flex gap-6 mt-6">
+                                    <div>
+                                        <label for="group" class="block mb-2 text-[16px] font-medium text-gray-900 dark:text-white">Guruh</label>
+                                        <input v-model="computedList.group" type="text" name="group" id="group" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Guruh" required="">
                                     </div>
                                     <div>
-                                      <label for="duration" class="block mb-2 text-[16px] font-medium text-gray-900 dark:text-white">Davomiyligi</label>
-                                      <input v-model="contactInfo.duration" type="text" name="duration" id="duration" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Kurs davomiyligi" required="">
+                                        <label for="days" class="block mb-2 text-[16px] font-medium text-gray-900 dark:text-white">Kuni</label>
+                                        <select id="days"  @change="handleDaysChange($event.target.value)" class="w-[100%] font-bold py-2 px-2 text-[14px] border border-gray-300 outline-none rounded-lg">
+                                            <option value="time1">Har kuni</option>
+                                            <option value="time2">Toq kunlar</option>
+                                            <option value="time2">Juft kunlar</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label for="select_time" class="block mb-2 text-[16px] font-medium text-gray-900 dark:text-white">Kurs vaqti</label>
+                                        <select id="select_time" @change="handleSelectTimeChange($event.target.value)" class="w-[100%] font-bold py-2 px-2 text-[14px] border border-gray-300 outline-none rounded-lg">
+                                        <option value="time1">8:00-10:00 </option>
+                                        <option value="time2">9:00-11:00</option>
+                                        <option value="time3">10:00-12:00</option>
+                                        <option value="time4">13:00-15:00</option>
+                                        <option value="time5">14:00-16:00</option>
+                                        <option value="time6">15:00-17:00</option>
+                                        <option value="time7">16:00-18:00</option>
+                                        </select>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="w-[48%]">
-                                <div class="mt-3 flex items-center justify-between gap-3">
-                                  <div>
-                                    <label for="end-date" class="block mb-2 text-[16px] font-medium text-gray-900 dark:text-white">Tugash sanasi</label>
-                                    <input  id="end_date" type="date" name="end_date" class="rounded-lg outline-none border-gray-300">
-                                  </div>
-                                  <div>
-                                    <label for="course_price" class="block mb-2 text-[16px] font-medium text-gray-900 dark:text-white">Bir kurs narxi</label>
-                                    <input v-model="contactInfo.course_price" type="text" name="course_price" id="course_price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Bir kurs narxi" required="">
-                                  </div>
-                                  <div>
-                                    <label for="listener_status" class="block mb-2 text-[16px] font-medium text-gray-900 dark:text-white">Tinglovchi statusi</label>
-                                    <input v-model="contactInfo.listener_status" type="text" name="listener_status" id="listener_status" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Tinglovchi statusi" required="">
-                                  </div>
-                                </div>
-                                <div class="mt-3 flex items-center gap-6">
-                                  <div>
-                                    <label for="contract" class="block mb-2 text-[16px] font-medium text-gray-900 dark:text-white">Shartnoma raqami va sanasi</label>
-                                    <input v-model="contactInfo.contract" type="text" name="contract" id="contract" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Shartnoma raqami va sanasi" required="">
-                                  </div>
-                                  <div>
-                                    <label for="teacher" class="block mb-2 text-[16px] font-medium text-gray-900 dark:text-white">O'qituvchi</label>
-                                    <input v-model="contactInfo.teacher" type="text" name="teacher" id="teacher" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-[280px] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="O'qituvchi F.I.O" required="">
-                                  </div>
-                                </div>
-                                <div class="mt-3 flex items-center justify-between">
-                                  <div>
-                                    <label for="group" class="block mb-2 text-[16px] font-medium text-gray-900 dark:text-white">Guruh</label>
-                                    <input v-model="contactInfo.group" type="text" name="group" id="group" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Guruh" required="">
-                                  </div>
-                                  <div>
-                                    <label for="days" class="block mb-2 text-[16px] font-medium text-gray-900 dark:text-white">Kuni</label>
-                                    <select id="days"  @change="handleDaysChange($event.target.value)" class="w-[100%] font-bold py-2 px-2 text-[14px] border border-gray-300 outline-none rounded-lg">
-                                      <option value="time1">Har kuni</option>
-                                      <option value="time2">Toq kunlar</option>
-                                      <option value="time2">Juft kunlar</option>
-                                    </select>
-                                  </div>
-                                  <div>
-                                    <label for="select_time" class="block mb-2 text-[16px] font-medium text-gray-900 dark:text-white">Kurs vaqti</label>
-                                    <select id="select_time" @change="handleSelectTimeChange($event.target.value)" class="w-[100%] font-bold py-2 px-2 text-[14px] border border-gray-300 outline-none rounded-lg">
-                                      <option value="time1">8:00-10:00 </option>
-                                      <option value="time2">9:00-11:00</option>
-                                      <option value="time3">10:00-12:00</option>
-                                      <option value="time4">13:00-15:00</option>
-                                      <option value="time5">14:00-16:00</option>
-                                      <option value="time6">15:00-17:00</option>
-                                      <option value="time7">16:00-18:00</option>
-                                    </select>
-                                  </div>
-                                </div>
-                                <div class="mt-3 flex items-center gap-4">
-                                  <div>
-                                     <label for="bootcamp" class="block mb-2 text-[16px] font-medium text-gray-900 dark:text-white">Qaysi kursga o'tdi</label>
-                                    <input v-model="contactInfo.bootcamp" type="text" name="bootcamp" id="bootcamp" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-[310px] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Qaysi kursga o'tdi" required="">
-                                  </div>
-                                  <div>
-                                     <label for="sertificate_status" class="block mb-2 text-[16px] font-medium text-gray-900 dark:text-white">Sertifikat statusi</label>
-                                    <input v-model="contactInfo.sertificate_status" type="text" name="sertificate_status" id="sertificate_status" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Sertifikat statusi" required="">
-                                  </div>
+                                <div class="grid gap-6 mt-6">
+                                    <div class="mt-3 flex items-center justify-between">
+                                        <div>
+                                            <label for="bootcamp" class="block mb-2 text-[16px] font-medium text-gray-900 dark:text-white">Qaysi kursga o'tdi</label>
+                                            <input v-model="computedList.bootcamp" type="text" name="bootcamp" id="bootcamp" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-[310px] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Qaysi kursga o'tdi" required="">
+                                        </div>
+                                        <div>
+                                            <label for="sertificate_status" class="block mb-2 text-[16px] font-medium text-gray-900 dark:text-white">Sertifikat statusi</label>
+                                            <input v-model="computedList.sertificate_status" type="text" name="sertificate_status" id="sertificate_status" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Sertifikat statusi" required="">
+                                        </div>
                                 </div>
                                 <div class="mt-3 flex items-center gap-4">
                                   <div>
                                      <label for="sertificate" class="block mb-2 text-[16px] font-medium text-gray-900 dark:text-white">Sertifikat № va sana</label>
-                                    <input v-model="contactInfo.sertificate" type="text" name="sertificate" id="sertificate" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-[310px] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Sertifikat № va sana" required="">
+                                    <input v-model="computedList.sertificate" type="text" name="sertificate" id="sertificate" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-[310px] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Sertifikat № va sana" required="">
                                   </div>
                                   <div>
                                     <label for="employment" class="block mb-2 text-[16px] font-medium text-gray-900 dark:text-white">Ish bilan ta'minlanish</label>
-                                    <input v-model="contactInfo.employment" type="text" name="employment" id="employment" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ish bilan ta'minlanish" required="">
-                                  </div>
+                                    <input v-model="computedList.employment" type="text" name="employment" id="employment" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ish bilan ta'minlanish" required="">
+                                  </div>                                  
+                                </div>
                                 </div>
                             </div>
-                        </div>
-                        
-                      <div class="">
-                          <img v-if="imageUrl" :src="imageUrl" alt="Uploaded Image" />
-                      </div>
-                      
+                        </div>                      
                     </div>
                     <div class="flex justify-end items-center">
                         <button v-if="!isUpdate" @click="addContact($event)" type="submit" class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">

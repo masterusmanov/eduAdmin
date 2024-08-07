@@ -38,8 +38,8 @@
                                   <div class="">
                                     <label for="selectSex" class="block mb-2 text-[16px] font-medium text-gray-900 dark:text-white">Jinsi</label>
                                     <select id="selectSex" @change="handleSelectSexChange($event.target.value)" class="w-[100%] font-bold py-2 px-2 text-[14px] border border-gray-300 outline-none rounded-lg">
-                                      <option value="male">Erkak</option>
-                                      <option value="famale">Ayol</option>
+                                      <option value="Erkak">Erkak</option>
+                                      <option value="Ayol">Ayol</option>
                                     </select>
                                   </div>
                                   <div>
@@ -113,21 +113,21 @@
                                   <div>
                                     <label for="days" class="block mb-2 text-[16px] font-medium text-gray-900 dark:text-white">Kuni</label>
                                     <select id="days"  @change="handleDaysChange($event.target.value)" class="w-[100%] font-bold py-2 px-2 text-[14px] border border-gray-300 outline-none rounded-lg">
-                                      <option value="everyday">Har kuni</option>
-                                      <option value="odddays">Toq kunlar</option>
-                                      <option value="coupledays">Juft kunlar</option>
+                                      <option value="Har kuni">Har kuni</option>
+                                      <option value="Toq kunlari">Toq kunlar</option>
+                                      <option value="Juft kunlar">Juft kunlar</option>
                                     </select>
                                   </div>
                                   <div>
                                     <label for="select_time" class="block mb-2 text-[16px] font-medium text-gray-900 dark:text-white">Kurs vaqti</label>
                                     <select id="select_time" @change="handleSelectTimeChange($event.target.value)" class="w-[100%] font-bold py-2 px-2 text-[14px] border border-gray-300 outline-none rounded-lg">
-                                      <option value="time1">8:00-10:00 </option>
-                                      <option value="time2">9:00-11:00</option>
-                                      <option value="time3">10:00-12:00</option>
-                                      <option value="time4">13:00-15:00</option>
-                                      <option value="time5">14:00-16:00</option>
-                                      <option value="time6">15:00-17:00</option>
-                                      <option value="time7">16:00-18:00</option>
+                                      <option value="08:00-10:00">8:00-10:00 </option>
+                                      <option value="9:00-11:00">9:00-11:00</option>
+                                      <option value="10:00-12:00">10:00-12:00</option>
+                                      <option value="13:00-15:00">13:00-15:00</option>
+                                      <option value="14:00-16:00">14:00-16:00</option>
+                                      <option value="15:00-17:00">15:00-17:00</option>
+                                      <option value="16:00-18:00">16:00-18:00</option>
                                     </select>
                                   </div>
                                 </div>
@@ -153,10 +153,10 @@
                                 </div>
                               </div>
                             </div>
-<!--                             
+                            
                             <div class="">
-                              <img v-if="imageUrl" :src="imageUrl" alt="Uploaded Image" />
-                            </div> -->
+                              <p v-if="imageUrl" class="text-red-500 font-bold">Rasm yuklandi!</p>
+                            </div>
                             
                           </div>
                           <div class="flex justify-end items-center">
@@ -198,8 +198,8 @@
             </tr>
           </thead>
           <tbody class="">  
-            <tr v-for="el in paginatedData" :key="el.id" class="border-b dark:border-gray-700"> 
-              <td class="px-4 py-3 text-center border border-black">{{el.id}}</td>
+            <tr v-for="(el, index) in paginatedData" :key="el.id" class="border-b dark:border-gray-700"> 
+              <td class="px-4 py-3 text-center border border-black">{{index + 1}}</td>
               <td class="px-4 py-3 text-center border border-black">{{el.student_id}}</td>
               <td class="px-4 py-3 border border-black">{{el.student_name}}</td>
               <td class="px-4 py-3 text-center border border-black">{{el.birthdate}}</td>
@@ -230,7 +230,7 @@
   
   <script setup>
     import {ref as vueRef, reactive, computed, onMounted} from 'vue'
-    import { Modal } from 'flowbite'
+    // import { Modal } from 'flowbite'
     import { courseStudentStore } from '../../stores/CourseStudentStore/courseStudentStore';
     import {useRouter} from 'vue-router'
     import { courseStudent } from '../../services/CourseStudent/index';
@@ -266,7 +266,7 @@
 
     const handleSelectTimeChange = (selectedValue) => {
       contactInfo.select_time = selectedValue;
-      console.log(contactInfo.select_time);
+      console.log(contactInfo.select_time.value);
     };
 
     const detail = (id) => {
@@ -393,7 +393,7 @@
   const paginatedData = computed(() => {
     const start = (currentPage.value - 1) * itemsPerPage;
     const end = start + itemsPerPage;
-    return computedList.value.slice(start, end);
+    return Array.isArray(computedList.value) ? computedList.value.slice(start, end) : [];
   });
 
   const prevPage = () => {
