@@ -246,7 +246,7 @@
                         <span class="sr-only">Close modal</span>
                     </button>
                 </div>
-                <form >
+                <form  @submit.prevent="modifyContact($event)">
                     <div class="grid gap-4 mb-4 sm:grid-cols-1">
                         <div class="flex justify-between gap-6">
                             <div class="">
@@ -278,21 +278,21 @@
                                     <div>
                                         <label for="days" class="block mb-2 text-[16px] font-medium text-gray-900 dark:text-white">Kuni</label>
                                         <select id="days"  @change="handleDaysChange($event.target.value)" class="w-[100%] font-bold py-2 px-2 text-[14px] border border-gray-300 outline-none rounded-lg">
-                                            <option value="time1">Har kuni</option>
-                                            <option value="time2">Toq kunlar</option>
-                                            <option value="time2">Juft kunlar</option>
+                                            <option value="Har kuni">Har kuni</option>
+                                            <option value="Toq kunlari">Toq kunlar</option>
+                                            <option value="Juft kunlar">Juft kunlar</option>
                                         </select>
                                     </div>
                                     <div>
                                         <label for="select_time" class="block mb-2 text-[16px] font-medium text-gray-900 dark:text-white">Kurs vaqti</label>
                                         <select id="select_time" @change="handleSelectTimeChange($event.target.value)" class="w-[100%] font-bold py-2 px-2 text-[14px] border border-gray-300 outline-none rounded-lg">
-                                        <option value="time1">8:00-10:00 </option>
-                                        <option value="time2">9:00-11:00</option>
-                                        <option value="time3">10:00-12:00</option>
-                                        <option value="time4">13:00-15:00</option>
-                                        <option value="time5">14:00-16:00</option>
-                                        <option value="time6">15:00-17:00</option>
-                                        <option value="time7">16:00-18:00</option>
+                                            <option value="08:00-10:00">8:00-10:00 </option>
+                                            <option value="9:00-11:00">9:00-11:00</option>
+                                            <option value="10:00-12:00">10:00-12:00</option>
+                                            <option value="13:00-15:00">13:00-15:00</option>
+                                            <option value="14:00-16:00">14:00-16:00</option>
+                                            <option value="15:00-17:00">15:00-17:00</option>
+                                            <option value="16:00-18:00">16:00-18:00</option>
                                         </select>
                                     </div>
                                 </div>
@@ -322,12 +322,11 @@
                         </div>                      
                     </div>
                     <div class="flex justify-end items-center">
-                        <button v-if="!isUpdate" @click="addContact($event)" type="submit" class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        <button type="submit" class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                             Yangilash
                         </button>
                     </div>
                 </form>
-                <!-- <button @click="closeModal">Close</button> -->
             </div>
         </div>
     </div>
@@ -359,32 +358,32 @@
         isOpen.value = false;
     };
 
+    const handleDaysChange = (selectedValue) => {
+      contactInfo.days = selectedValue;
+      console.log(contactInfo.days);
+    };
+
+    const handleSelectTimeChange = (selectedValue) => {
+      contactInfo.select_time = selectedValue;
+      console.log(contactInfo.select_time.value);
+    };
+
     const contactInfo = reactive({
-        student_id: '',
-        student_name: '',
-        selectSex: '',
-        birthdate: '',
-        identity_document: '',
-        address: '',
-        social_status: '',
         phone_number: '',
-        course_name: '',
-        start_date: '',
-        duration: '',
-        end_date: '',
         course_price: '',
         listener_status: '',
-        contract: '',
         teacher: '',
         group: '',
         days: '',
-        select_time: '',
+        select_time: '',    
         bootcamp: '',
         sertificate_status: '',
         sertificate: '',
         employment: '',
         course_studentPhoto: ''
     });
+
+   
 
      const getList = () => {
     const id = sessionStorage.getItem('student_id'); 
@@ -403,59 +402,33 @@
 };
 
 
-     const modifyContact=(event)=>{
-      event.preventDefault();
-      const student_id  = sessionStorage.getItem('student_id')
-      const contact = { ...contactInfo }
-      console.log('Modified Contact:', contact);
-  
-      courseStudent.update(student_id, contact).then((res)=>{
-          if(res.status === 200){
-              toast.success('successfully updated contact !', {autoClose: 1000, theme: 'dark', pauseOnHover: false})
-              Object.keys(contactInfo).forEach(key => contactInfo[key] = '');
-              
-              isUpdate.value = false;
-              getList();
-              toggleModal()
-          }
-      }).catch((error)=>{
-          toast.error(error.message)
-      })
+     const modifyContact = (event) => {
+        event.preventDefault();
+        
+        const student_id = sessionStorage.getItem('student_id');
+        if (!student_id) {
+            toast.error('Student ID not found!');
+            return;
+        }
+
+        const contact = { ...contactInfo };
+        console.log('Modified Contact:', contact);
+
+        courseStudent.update(student_id, contact).then((res) => {
+            if (res.status === 200) {
+                toast.success('Successfully updated contact!', { autoClose: 1000, theme: 'dark', pauseOnHover: false });
+                
+                Object.keys(contactInfo).forEach(key => contactInfo[key] = '');
+                isUpdate.value = false;
+                getList();
+                toggleModal();
+            }
+        }).catch((error) => {
+            toast.error(error.message);
+            console.error('Error updating contact:', error);
+        });
     }
-    const updateContact = (id)=>{
-
-      sessionStorage.setItem('student_id', id)
-      isUpdate.value = true;
-      const foundContact = store.findOne(id)[0]
-      
-      contactInfo.student_id = foundContact[0].student_id
-      contactInfo.student_name = foundContact[0].student_name
-      contactInfo.selectSex = foundContact[0].selectSex
-      contactInfo.birthdate = foundContact[0].birthdate
-      contactInfo.identity_document = foundContact[0].identity_document
-      contactInfo.address = foundContact[0].address
-      contactInfo.social_status = foundContact[0].social_status
-      contactInfo.phone_number = foundContact[0].phone_number
-      contactInfo.course_name = foundContact[0].course_name
-      contactInfo.start_date = foundContact[0].start_date
-      contactInfo.duration = foundContact[0].duration
-      contactInfo.end_date = foundContact[0].end_date
-      contactInfo.course_price = foundContact[0].course_price
-      contactInfo.listener_status = foundContact[0].listener_status
-      contactInfo.contract = foundContact[0].contract
-      contactInfo.teacher = foundContact[0].teacher
-      contactInfo.group = foundContact[0].group
-      contactInfo.days = foundContact[0].days
-      contactInfo.select_time = foundContact[0].select_time
-      contactInfo.bootcamp = foundContact[0].bootcamp
-      contactInfo.sertificate_status = foundContact[0].sertificate_status
-      contactInfo.sertificate = foundContact[0].sertificate
-      contactInfo.employment = foundContact[0].employment
-      contactInfo.course_studentPhoto = foundContact[0].course_studentPhoto
-
-      toggleModal();
-    }
-
+    
     computedList = computed(() => {
         return store.state.list;
     })

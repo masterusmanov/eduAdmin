@@ -38,6 +38,7 @@
                                   <div class="">
                                     <label for="selectSex" class="block mb-2 text-[16px] font-medium text-gray-900 dark:text-white">Jinsi</label>
                                     <select id="selectSex" @change="handleSelectSexChange($event.target.value)" class="w-[100%] font-bold py-2 px-2 text-[14px] border border-gray-300 outline-none rounded-lg">
+                                      <option value="Jinsi aniqlanmadi">Jinsini tanlang</option>
                                       <option value="Erkak">Erkak</option>
                                       <option value="Ayol">Ayol</option>
                                     </select>
@@ -83,8 +84,8 @@
                             <div class="w-[48%]">
                                 <div class="mt-3 flex items-center justify-between gap-3">
                                   <div>
-                                    <label for="end-date" class="block mb-2 text-[16px] font-medium text-gray-900 dark:text-white">Tugash sanasi</label>
-                                    <input  id="end_date" type="date" name="end_date" class="rounded-lg outline-none border-gray-300">
+                                    <label for="end_date" class="block mb-2 text-[16px] font-medium text-gray-900 dark:text-white">Tugash sanasi</label>
+                                    <input v-model="contactInfo.end_date"  id="end_date" type="date" name="end_date" class="rounded-lg outline-none border-gray-300">
                                   </div>
                                   <div>
                                     <label for="course_price" class="block mb-2 text-[16px] font-medium text-gray-900 dark:text-white">Bir kurs narxi</label>
@@ -113,6 +114,7 @@
                                   <div>
                                     <label for="days" class="block mb-2 text-[16px] font-medium text-gray-900 dark:text-white">Kuni</label>
                                     <select id="days"  @change="handleDaysChange($event.target.value)" class="w-[100%] font-bold py-2 px-2 text-[14px] border border-gray-300 outline-none rounded-lg">
+                                      <option value="Kuni tanlanmagan">Kunini tanlang</option>
                                       <option value="Har kuni">Har kuni</option>
                                       <option value="Toq kunlari">Toq kunlar</option>
                                       <option value="Juft kunlar">Juft kunlar</option>
@@ -121,6 +123,7 @@
                                   <div>
                                     <label for="select_time" class="block mb-2 text-[16px] font-medium text-gray-900 dark:text-white">Kurs vaqti</label>
                                     <select id="select_time" @change="handleSelectTimeChange($event.target.value)" class="w-[100%] font-bold py-2 px-2 text-[14px] border border-gray-300 outline-none rounded-lg">
+                                      <option value="Vaqti tanlanmagan">Vaqtini tanlang!</option>
                                       <option value="08:00-10:00">8:00-10:00 </option>
                                       <option value="9:00-11:00">9:00-11:00</option>
                                       <option value="10:00-12:00">10:00-12:00</option>
@@ -180,14 +183,14 @@
     <div class="w-full px-0 lg:p-0">
     <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
       <div class="overflow-x-auto">
-        <table class="w-full text-sm">
+        <table class="w-full text-[10px]">
           <thead class="text-md text-white font-bold uppercase bg-gray-500">
             <tr class="">
               <th scope="col" class="px-4 py-3 text-center border border-white">T/R</th>
               <th scope="col" class="px-4 py-3 text-center border border-white">ID</th>
               <th scope="col" class="px-4 py-3 text-center border border-white">Ismi va Familiyasi</th>
               <th scope="col" class="px-4 py-3 text-center border border-white">Tug`ilgan sanasi</th>
-              <th scope="col" class="px-4 py-3 text-center border border-white">Shaxsni tasdiqlovchi hujjat (yoki ota-onasi)</th>
+              <th scope="col" class="px-4 py-3 text-center border border-white">Shaxsni tasdiqlovchi hujjat <br> (yoki ota-onasi)</th>
               <th scope="col" class="px-4 py-3 text-center border border-white">Manzil</th>
               <th scope="col" class="px-4 py-3 text-center border border-white">Telefon raqami</th>
               <th scope="col" class="px-4 py-3 text-center border border-white">Tinglovchining ijtimoiy statusi</th>
@@ -240,7 +243,7 @@
     const modal = vueRef(false);  
     const isShowModal = vueRef(false);
     const currentPage = vueRef(1);
-    const itemsPerPage = 8;
+    const itemsPerPage = 10;
     
     function showModal() {
         isShowModal.value = !isShowModal.value
@@ -266,7 +269,7 @@
 
     const handleSelectTimeChange = (selectedValue) => {
       contactInfo.select_time = selectedValue;
-      console.log(contactInfo.select_time.value);
+      console.log(contactInfo.select_time);
     };
 
     const detail = (id) => {
