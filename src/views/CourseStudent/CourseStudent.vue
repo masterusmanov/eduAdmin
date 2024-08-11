@@ -2,7 +2,13 @@
     <div class="container mx-auto">
         <div class="my-[50px] ml-5 flex justify-between items-center pr-5">
             <h1 class="text-[24px] font-[700]">IT school o'quvchilari ro'yhati</h1>
-            <button @click="toggleModal" class="bg-[#77BF44] pb-1 rounded-lg px-4 text-[32px] text-white font-bold">+</button>
+            <div class="flex items-center gap-6">
+              <div class="flex items-center  rounded-lg w-[300px] px-1">
+                <input v-model="searchQuery" type="text" class="rounded-lg w-full " placeholder="F.I.O bo'yicha Izlash. . .">
+                <i class='bx bx-search absolute ml-[270px]'></i>
+              </div>
+              <button @click="toggleModal" class="bg-[#77BF44] pb-1 rounded-lg px-4 text-[28px] text-white font-bold">+</button>
+            </div>
         </div>
 
       <!-- Main modal -->
@@ -183,10 +189,10 @@
     <div class="w-full px-0 lg:p-0">
     <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
       <div class="overflow-x-auto">
-        <table class="w-full text-[10px]">
+        <table class="w-full text-[11px]">
           <thead class="text-md text-white font-bold uppercase bg-gray-500">
             <tr class="">
-              <th scope="col" class="px-4 py-3 text-center border border-white">T/R</th>
+              <th scope="col" class="px-4 py-3 text-center ">T/R</th>
               <th scope="col" class="px-4 py-3 text-center border border-white">ID</th>
               <th scope="col" class="px-4 py-3 text-center border border-white">Ismi va Familiyasi</th>
               <th scope="col" class="px-4 py-3 text-center border border-white">Tug`ilgan sanasi</th>
@@ -196,12 +202,13 @@
               <th scope="col" class="px-4 py-3 text-center border border-white">Tinglovchining ijtimoiy statusi</th>
               <th scope="col" class="px-4 py-3 text-center border border-white">Kurs nomi</th>
               <th scope="col" class="px-4 py-3 text-center border border-white">Boshlanish sanasi</th>
-              <th scope="col" class="px-4 py-3 text-center border border-white"></th>
-              <th scope="col" class="px-4 py-3 text-center border border-white"></th>
+              <th scope="col" class="px-4 py-3 text-center"></th>
+              <th scope="col" class="px-4 py-3 text-center"></th>
             </tr>
           </thead>
           <tbody class="">  
-            <tr v-for="(el, index) in paginatedData.slice().reverse()" :key="el.id" class="border-b dark:border-gray-700"> 
+            <!-- v-for="(el, index) in paginatedData.slice().reverse()" -->
+            <tr  v-for="(el, index) in filteredList" :key="el.id" class="border-b dark:border-gray-700"> 
               <td class="px-4 py-3 text-center border border-black">{{index + 1}}</td>
               <td class="px-4 py-3 text-center border border-black">{{el.student_id}}</td>
               <td class="px-4 py-3 border border-black">{{el.student_name}}</td>
@@ -243,11 +250,7 @@
     const modal = vueRef(false);  
     const isShowModal = vueRef(false);
     const currentPage = vueRef(1);
-    const itemsPerPage = 10;
-    
-    function showModal() {
-        isShowModal.value = !isShowModal.value
-    }
+    const itemsPerPage = 11;
   
     const router = useRouter();
     const store = courseStudentStore();
@@ -255,7 +258,7 @@
     let computedList = vueRef([]);
     const file = vueRef(null);
     const imageUrl = vueRef('');
-    const uploadProgress = vueRef(0);
+    const searchQuery = vueRef('');
 
     const handleSelectSexChange = (selectedValue) => {
       contactInfo.selectSex = selectedValue;
@@ -314,11 +317,20 @@
     
   const getlist = () => {
     courseStudent.list().then((res)=>{
-      store.state.list = res.data    
+      store.state.list = Array.isArray(res.data) ? res.data : [];    
     }).catch((error)=>{
         console.log(error.message);
       })
   }
+
+  const filteredList = computed(() => {
+      console.log('Filtered List:', store.state.list);
+      return Array.isArray(store.state.list)
+      ? store.state.list.filter(el => 
+          el.student_name.includes(searchQuery.value)
+        )
+      : [];
+    });
     
     const addContact=(evet)=>{
         evet.preventDefault();
