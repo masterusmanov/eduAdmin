@@ -246,38 +246,38 @@
                         <span class="sr-only">Close modal</span>
                     </button>
                 </div>
-                <form  @submit.prevent="modifyContact($event)">
+                <form @submit.prevent="modifyContact($event)">
                     <div class="grid gap-4 mb-4 sm:grid-cols-1">
                         <div class="flex justify-between gap-6">
                             <div class="">
                                 <div class="flex gap-6 mt-6">
                                     <div>
                                         <label for="teacher" class="block mb-2 text-[16px] font-medium text-gray-900 dark:text-white">O'qituvchi</label>
-                                        <input v-model="computedList.teacher" type="text" name="teacher" id="teacher" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-[280px] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="O'qituvchi F.I.O" required="">
+                                        <input v-model="contactInfo.teacher" type="text" name="teacher" id="teacher" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-[280px] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="O'qituvchi F.I.O" required="">
                                     </div>
                                     <div>
                                          <label for="phone_number" class="block mb-2 text-[16px] font-medium text-gray-900 dark:text-white">Telefon raqami</label>
-                                        <input v-model="computedList.phone_number" type="phone" name="phone_number" id="phone_number" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Telefon raqami" required="">
+                                        <input v-model="contactInfo.phone_number" type="phone" name="phone_number" id="phone_number" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Telefon raqami" required="">
                                     </div>
                                 </div> 
                                 <div class="flex gap-6 mt-6">
                                     <div class="">
                                         <label for="course_price" class="block mb-2 text-[16px] font-medium text-gray-900 dark:text-white">Bir kurs narxi</label>
-                                        <input v-model="computedList.course_price" type="text" name="course_price" id="course_price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Bir kurs narxi" required="">
+                                        <input v-model="contactInfo.course_price" type="text" name="course_price" id="course_price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Bir kurs narxi" required="">
                                     </div>
                                     <div class="">
                                         <label for="listener_status" class="block mb-2 text-[16px] font-medium text-gray-900 dark:text-white">Tinglovchi statusi</label>
-                                        <input v-model="computedList.listener_status" type="text" name="listener_status" id="listener_status" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Tinglovchi statusi" required="">
+                                        <input v-model="contactInfo.listener_status" type="text" name="listener_status" id="listener_status" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Tinglovchi statusi" required="">
                                     </div>
                                 </div>
                                 <div class="flex gap-6 mt-6">
                                     <div>
                                         <label for="group" class="block mb-2 text-[16px] font-medium text-gray-900 dark:text-white">Guruh</label>
-                                        <input v-model="computedList.group" type="text" name="group" id="group" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Guruh" required="">
+                                        <input v-model="contactInfo.group" type="text" name="group" id="group" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Guruh" required="">
                                     </div>
                                     <div>
                                         <label for="days" class="block mb-2 text-[16px] font-medium text-gray-900 dark:text-white">Kuni</label>
-                                        <select id="days"  @change="handleDaysChange($event.target.value)" class="w-[100%] font-bold py-2 px-2 text-[14px] border border-gray-300 outline-none rounded-lg">
+                                        <select id="days" v-model="contactInfo.days" class="w-[100%] font-bold py-2 px-2 text-[14px] border border-gray-300 outline-none rounded-lg">
                                             <option value="Har kuni">Har kuni</option>
                                             <option value="Toq kunlari">Toq kunlar</option>
                                             <option value="Juft kunlar">Juft kunlar</option>
@@ -285,7 +285,7 @@
                                     </div>
                                     <div>
                                         <label for="select_time" class="block mb-2 text-[16px] font-medium text-gray-900 dark:text-white">Kurs vaqti</label>
-                                        <select id="select_time" @change="handleSelectTimeChange($event.target.value)" class="w-[100%] font-bold py-2 px-2 text-[14px] border border-gray-300 outline-none rounded-lg">
+                                        <select id="select_time" v-model="contactInfo.select_time" class="w-[100%] font-bold py-2 px-2 text-[14px] border border-gray-300 outline-none rounded-lg">
                                             <option value="08:00-10:00">8:00-10:00 </option>
                                             <option value="9:00-11:00">9:00-11:00</option>
                                             <option value="10:00-12:00">10:00-12:00</option>
@@ -300,21 +300,21 @@
                                     <div class="mt-3 flex items-center justify-between">
                                         <div>
                                             <label for="bootcamp" class="block mb-2 text-[16px] font-medium text-gray-900 dark:text-white">Qaysi kursga o'tdi</label>
-                                            <input v-model="computedList.bootcamp" type="text" name="bootcamp" id="bootcamp" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-[310px] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Qaysi kursga o'tdi" required="">
+                                            <input v-model="contactInfo.bootcamp" type="text" name="bootcamp" id="bootcamp" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-[310px] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Qaysi kursga o'tdi" required="">
                                         </div>
                                         <div>
                                             <label for="sertificate_status" class="block mb-2 text-[16px] font-medium text-gray-900 dark:text-white">Sertifikat statusi</label>
-                                            <input v-model="computedList.sertificate_status" type="text" name="sertificate_status" id="sertificate_status" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Sertifikat statusi" required="">
+                                            <input v-model="contactInfo.sertificate_status" type="text" name="sertificate_status" id="sertificate_status" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Sertifikat statusi" required="">
                                         </div>
                                 </div>
                                 <div class="mt-3 flex items-center gap-4">
                                   <div>
                                      <label for="sertificate" class="block mb-2 text-[16px] font-medium text-gray-900 dark:text-white">Sertifikat № va sana</label>
-                                    <input v-model="computedList.sertificate" type="text" name="sertificate" id="sertificate" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-[310px] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Sertifikat № va sana" required="">
+                                    <input v-model="contactInfo.sertificate" type="text" name="sertificate" id="sertificate" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-[310px] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Sertifikat № va sana" required="">
                                   </div>
                                   <div>
                                     <label for="employment" class="block mb-2 text-[16px] font-medium text-gray-900 dark:text-white">Ish bilan ta'minlanish</label>
-                                    <input v-model="computedList.employment" type="text" name="employment" id="employment" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ish bilan ta'minlanish" required="">
+                                    <input v-model="contactInfo.employment" type="text" name="employment" id="employment" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ish bilan ta'minlanish" required="">
                                   </div>                                  
                                 </div>
                                 </div>
@@ -336,14 +336,10 @@
     import {ref as vueRef, reactive, computed, onMounted} from 'vue';
     import { courseStudentStore } from '../../stores/CourseStudentStore/courseStudentStore';
     import { courseStudent } from '../../services/CourseStudent/index';
-    import { useRouter } from 'vue-router'
 
     const modal = vueRef(false);  
     const isOpen = vueRef(false);
-    const inputData = vueRef('');
-    const router = useRouter();
     const store = courseStudentStore();
-    const isUpdate = vueRef(false);
     let computedList = vueRef([]);
 
     const toggleModal = () => {
@@ -358,16 +354,6 @@
         isOpen.value = false;
     };
 
-    const handleDaysChange = (selectedValue) => {
-      contactInfo.days = selectedValue;
-      console.log(contactInfo.days);
-    };
-
-    const handleSelectTimeChange = (selectedValue) => {
-      contactInfo.select_time = selectedValue;
-      console.log(contactInfo.select_time.value);
-    };
-
     const contactInfo = reactive({
         phone_number: '',
         course_price: '',
@@ -380,51 +366,45 @@
         sertificate_status: '',
         sertificate: '',
         employment: '',
-        course_studentPhoto: ''
     });
 
-   
-
      const getList = () => {
-    const id = sessionStorage.getItem('student_id'); 
-    if (id) {
-        courseStudent.listId(id)
-            .then((res) => {
-                store.state.list = res.data;
-                console.log(store.state.list);
-            })
-            .catch((error) => {
-                console.log(error.message);
-            });
-    } else {
-        console.error("No student ID found in sessionStorage");
-    }
-};
+        const id = sessionStorage.getItem('student_id'); 
+        if (id) {
+            courseStudent.listId(id)
+                .then((res) => {
+                    store.state.list = res.data;
+                    console.log(store.state.list);
+                })
+                .catch((error) => {
+                    console.log(error.message);
+                });
+        } else {
+            console.error("No student ID found in sessionStorage");
+        }
+    };
 
 
      const modifyContact = (event) => {
         event.preventDefault();
         
-        const student_id = sessionStorage.getItem('student_id');
-        if (!student_id) {
-            toast.error('Student ID not found!');
+         const id = sessionStorage.getItem('student_id');
+         console.log(id)
+        if (!id) {
+           console.error("Bunday ID yo'q")
             return;
         }
 
         const contact = { ...contactInfo };
-        console.log('Modified Contact:', contact);
+        console.log('Modified Contact:', contactInfo);
 
-        courseStudent.update(student_id, contact).then((res) => {
-            if (res.status === 200) {
-                toast.success('Successfully updated contact!', { autoClose: 1000, theme: 'dark', pauseOnHover: false });
-                
+        courseStudent.update(id, contact).then((res) => {
+            if (res.status === 200) {               
                 Object.keys(contactInfo).forEach(key => contactInfo[key] = '');
-                isUpdate.value = false;
                 getList();
-                toggleModal();
+                closeModal();
             }
         }).catch((error) => {
-            toast.error(error.message);
             console.error('Error updating contact:', error);
         });
     }

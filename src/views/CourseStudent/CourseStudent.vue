@@ -201,7 +201,7 @@
             </tr>
           </thead>
           <tbody class="">  
-            <tr v-for="(el, index) in paginatedData" :key="el.id" class="border-b dark:border-gray-700"> 
+            <tr v-for="(el, index) in paginatedData.slice().reverse()" :key="el.id" class="border-b dark:border-gray-700"> 
               <td class="px-4 py-3 text-center border border-black">{{index + 1}}</td>
               <td class="px-4 py-3 text-center border border-black">{{el.student_id}}</td>
               <td class="px-4 py-3 border border-black">{{el.student_name}}</td>

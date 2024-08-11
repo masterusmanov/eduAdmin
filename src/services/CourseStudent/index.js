@@ -30,7 +30,7 @@ export const courseStudent = {
     }),
 
   update: (id, state) =>
-    axios.put(`/api/course-student/${id}`, state, {
+    axios.patch(`/api/course-student/update/${id}`, state, {
       headers: {
         "Content-Type": "application/json",
       },
