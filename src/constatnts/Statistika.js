@@ -1,4 +1,6 @@
     const length = localStorage.getItem("length");
+    const cor_stud_length = localStorage.getItem("cor_stud_length")    
+
 
 export const Statistika = [
     {
@@ -23,6 +25,6 @@ export const Statistika = [
       id: 4,
       icon: "fas fa-graduation-cap",
       title: "Offline kurs o'quvchilari",
-      num: length + " ta",
+      num: cor_stud_length + " ta",
     }
   ]

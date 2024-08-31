@@ -208,7 +208,7 @@
           </thead>
           <tbody class="">  
             <!-- v-for="(el, index) in paginatedData.slice().reverse()" -->
-            <tr  v-for="(el, index) in filteredList" :key="el.id" class="border-b dark:border-gray-700"> 
+            <tr  v-for="(el, index) in paginatedData" :key="el.id" class="border-b dark:border-gray-700"> 
               <td class="px-4 py-3 text-center border border-black">{{index + 1}}</td>
               <td class="px-4 py-3 text-center border border-black">{{el.student_id}}</td>
               <td class="px-4 py-3 border border-black">{{el.student_name}}</td>
@@ -250,7 +250,7 @@
     const modal = vueRef(false);  
     const isShowModal = vueRef(false);
     const currentPage = vueRef(1);
-    const itemsPerPage = 11;
+    const itemsPerPage = 12;
   
     const router = useRouter();
     const store = courseStudentStore();
@@ -317,7 +317,8 @@
     
   const getlist = () => {
     courseStudent.list().then((res)=>{
-      store.state.list = Array.isArray(res.data) ? res.data : [];    
+      store.state.list = Array.isArray(res.data) ? res.data : [];
+      localStorage.setItem("cor_stud_length", res.data.length)    
     }).catch((error)=>{
         console.log(error.message);
       })
@@ -402,13 +403,13 @@
     })
 
     const totalPages = computed(() => {
-    return Math.ceil(computedList.value.length / itemsPerPage);
+    return Math.ceil(filteredList.value.length / itemsPerPage);
   });
 
   const paginatedData = computed(() => {
     const start = (currentPage.value - 1) * itemsPerPage;
     const end = start + itemsPerPage;
-    return Array.isArray(computedList.value) ? computedList.value.slice(start, end) : [];
+    return Array.isArray(filteredList.value) ? filteredList.value.slice(start, end) : [];
   });
 
   const prevPage = () => {
